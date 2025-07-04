@@ -1,0 +1,2325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardiopulmonary Physical Therapy | Afnan Derhm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5fa8;
+            --secondary: #41b6e6;
+            --accent: #e74c3c;
+            --cardiac: #d32f2f;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #28a745;
+            --warning: #ffc107;
+            --gray: #6c757d;
+            --light-blue: #e8f4f8;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.7;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: -70px;
+            left: -30px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .header-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
+        }
+        
+        .header-content h2 {
+            font-weight: 300;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            animation: fadeIn 1.2s ease;
+        }
+        
+        .lecture-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            backdrop-filter: blur(5px);
+            transition: var(--transition);
+        }
+        
+        .meta-item:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+        }
+        
+        /* Navigation */
+        .nav-container {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .chapter-nav {
+            display: flex;
+            overflow-x: auto;
+            padding: 15px 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) transparent;
+            gap: 8px;
+        }
+        
+        .chapter-nav::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .chapter-nav::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+        
+        .chapter-nav button {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            flex-shrink: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+        }
+        
+        .chapter-nav button:hover {
+            background: #f0f8ff;
+            border-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .chapter-nav button.active {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 8px rgba(44, 95, 168, 0.3);
+        }
+        
+        /* Accordion Styles */
+        .accordion-container {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .accordion {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            border: 1px solid #e9ecef;
+        }
+        
+        .accordion:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transform: translateY(-5px);
+        }
+        
+        .accordion-header {
+            padding: 22px 25px;
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: var(--primary);
+            border-bottom: 1px solid #e9ecef;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .accordion-header:hover {
+            background: linear-gradient(to right, #e9ecef, #dee2e6);
+        }
+        
+        .accordion-header i {
+            transition: var(--transition);
+            font-size: 1.3rem;
+        }
+        
+        .accordion.active .accordion-header i {
+            transform: rotate(180deg);
+        }
+        
+        .accordion-content {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease, padding 0.4s ease;
+        }
+        
+        .accordion.active .accordion-content {
+            padding: 30px 25px;
+            max-height: 5000px;
+        }
+        
+        /* Content Styles */
+        .content-section {
+            margin-bottom: 30px;
+        }
+        
+        .content-section h3 {
+            color: var(--primary);
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+            font-size: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .content-section p {
+            margin-bottom: 18px;
+            color: #495057;
+            font-size: 1.02rem;
+        }
+        
+        .content-section ul, .content-section ol {
+            padding-left: 30px;
+            margin-bottom: 25px;
+        }
+        
+        .content-section li {
+            margin-bottom: 12px;
+            position: relative;
+        }
+        
+        .content-section li::before {
+            content: "•";
+            color: var(--secondary);
+            font-weight: bold;
+            position: absolute;
+            left: -20px;
+            top: 0;
+            font-size: 1.4rem;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, rgba(65,182,230,0.15) 0%, rgba(65,182,230,0.05) 100%);
+            border-left: 4px solid var(--secondary);
+            padding: 25px;
+            border-radius: 0 10px 10px 0;
+            margin: 25px 0;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            transition: var(--transition);
+            border: 1px solid #e9ecef;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--secondary);
+        }
+        
+        .card.heart-card::before {
+            background: var(--cardiac);
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .card h4 {
+            color: var(--primary);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .card h4 i {
+            color: var(--secondary);
+            font-size: 1.3rem;
+        }
+        
+        .card.heart-card h4 i {
+            color: var(--cardiac);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+        }
+        
+        .comparison-table th {
+            background: var(--primary);
+            color: white;
+            padding: 18px;
+            text-align: left;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .comparison-table td {
+            padding: 18px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .image-placeholder {
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+            height: 220px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 25px 0;
+            color: var(--gray);
+            font-style: italic;
+            border: 1px dashed #ced4da;
+            transition: var(--transition);
+        }
+        
+        .image-placeholder:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .image-placeholder i {
+            font-size: 3.5rem;
+            opacity: 0.3;
+            margin-bottom: 15px;
+        }
+        
+        .emergency {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border-left: 4px solid var(--accent);
+            padding: 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 25px 0;
+        }
+        
+        .emergency h4 {
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .procedure-card {
+            background: linear-gradient(135deg, #e8f4f8 0%, #d1e9f2 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .phase-container {
+            display: flex;
+            gap: 25px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .phase {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            transition: var(--transition);
+        }
+        
+        .phase:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .phase h4 {
+            color: var(--primary);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .phase-number {
+            background: var(--secondary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 12px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .phase-number.cardiac {
+            background: var(--cardiac);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark) 0%, #343a40 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from { 
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header-content h2 {
+                font-size: 1.2rem;
+            }
+            
+            .lecture-meta {
+                gap: 10px;
+            }
+            
+            .meta-item {
+                padding: 7px 15px;
+                font-size: 0.85rem;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .phase-container {
+                flex-direction: column;
+            }
+            
+            .chapter-nav button {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Cardiopulmonary Physical Therapy</h1>
+                <h2>Comprehensive Lecture on Cardiopulmonary Conditions and Management</h2>
+                <div class="lecture-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-user-md"></i>
+                        <span>Physiotherapist: Afnan Derhm</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-book"></i>
+                        <span>Cardiopulmonary Specialization</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <div class="nav-container">
+        <div class="container">
+            <div class="chapter-nav">
+                <button class="active">Rib Fractures</button>
+                <button>Flail Chest</button>
+                <button>Pneumothorax</button>
+                <button>Hemothorax</button>
+                <button>Lung Injuries</button>
+                <button>Pneumonia</button>
+                <button>Empyema</button>
+                <button>Atelectasis</button>
+                <button>Cystic Fibrosis</button>
+                <button>Hemoptysis</button>
+                <button>Bronchiectasis</button>
+                <button>Lung Abscess</button>
+                <button>Tuberculosis</button>
+                <button>COPD</button>
+                <button>Asthma</button>
+                <button>Surgical Procedures</button>
+                <button>Respiratory Failure</button>
+                <button>Pulmonary Embolism</button>
+                <button>Pre/Post-Op Pulmonary</button>
+                <button>Pre/Post-Op Cardiac</button>
+                <button>CPR</button>
+                <button>Ventilators</button>
+                <button>ICU/CCU Management</button>
+                <button>Post-MI Management</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <div class="accordion-container">
+            <!-- Rib Fractures -->
+            <div class="accordion active">
+                <div class="accordion-header">
+                    <span><i class="fas fa-bone"></i> Rib Fractures</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <p>Rib fractures occur when a significant enough force directed at the rib causes a break.</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-x-ray"></i>
+                            <div>Rib Fracture Imaging Visualization</div>
+                        </div>
+                        
+                        <div class="highlight">
+                            <p><strong>Clinical Insight:</strong> Rib fractures are often associated with other injuries. The greater the number of rib fractures, the more likely associated injuries occur. Rib fractures can occur at any age, but older people are at higher risk because of osteoporosis.</p>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Key Patterns</h3>
+                            <ul>
+                                <li>Fractures of the 4th-10th ribs are the most common</li>
+                                <li>Fractures of the 1st-3rd ribs are associated with high-energy trauma</li>
+                                <li>When a rib is fractured twice, it's termed a "floating rib"</li>
+                                <li>Three or more contiguous floating ribs are called a "flail chest"</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Physiotherapy Management</h3>
+                            <div class="card-grid">
+                                <div class="card">
+                                    <h4><i class="fas fa-pain"></i> Pain Management</h4>
+                                    <p>Pharmacological and non-pharmacological approaches to control pain and facilitate breathing</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-lungs"></i> Breathing Exercises</h4>
+                                    <p>Techniques to prevent complications and additional damage to lungs</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-mobile-alt"></i> Early Mobilization</h4>
+                                    <p>Gradual progression of movement to prevent respiratory complications</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Flail Chest -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-first-aid"></i> Flail Chest</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <p>Flail chest occurs when a segment of the rib cage breaks due to blunt thoracic trauma and becomes unattached from the chest wall.</p>
+                        
+                        <div class="highlight">
+                            <p><strong>Clinical Insight:</strong> It can occur when 3 or more ribs are broken in at least two places, although not everyone with this type of injury will develop a flail chest.</p>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Types</h3>
+                            <ul>
+                                <li>Complete</li>
+                                <li>Incomplete</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Pulmonary Complications (48-72 hours after admission)</h3>
+                            <div class="card-grid">
+                                <div class="card">
+                                    <h4><i class="fas fa-tint"></i> Haemothorax</h4>
+                                    <p>Accumulation of blood in the pleural cavity</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-wind"></i> Pneumothorax</h4>
+                                    <p>Air in the pleural space causing lung collapse</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-lungs-virus"></i> Atelectasis</h4>
+                                    <p>Partial or complete lung collapse</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-vial"></i> Pleural Effusion</h4>
+                                    <p>Excess fluid buildup in the pleural space</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-swelling"></i> Subcutaneous Emphysema</h4>
+                                    <p>Air trapped under the skin</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-disease"></i> ARDS</h4>
+                                    <p>Acute Respiratory Distress Syndrome</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Physiotherapy Management</h3>
+                            <ul>
+                                <li><strong>Pain Management and Education:</strong> Crucial for effective breathing</li>
+                                <li><strong>Chest and Airway Clearance Techniques:</strong> To maintain open airways</li>
+                                <li><strong>Deep Breathing Exercises:</strong> Supported coughing techniques</li>
+                                <li><strong>Positioning:</strong> Optimal positions for ventilation and secretion clearance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pneumothorax -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-wind"></i> Pneumothorax</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <p>A pneumothorax is defined as air in the pleural cavity, occurring when there is a breach of the lung surface or chest wall allowing air to enter the pleural cavity and cause lung collapse.</p>
+                        
+                        <div class="content-section">
+                            <h3>Types of Pneumothorax</h3>
+                            <table class="comparison-table">
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                    <th>Characteristics</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>Primary Pneumothorax</strong></td>
+                                    <td>Spontaneous with no clear cause</td>
+                                    <td>No known underlying lung pathology</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Secondary Pneumothorax</strong></td>
+                                    <td>Non-spontaneous or complicated</td>
+                                    <td>Result of underlying lung pathology (COPD, Asthma, TB, etc.)</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Causes and Risk Factors</h3>
+                            <div class="card-grid">
+                                <div class="card">
+                                    <h4><i class="fas fa-male"></i> Primary Spontaneous</h4>
+                                    <ul>
+                                        <li>Gender (more common in males)</li>
+                                        <li>Smoking (tobacco or cannabis)</li>
+                                        <li>Family history</li>
+                                    </ul>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-lungs"></i> Secondary Spontaneous</h4>
+                                    <ul>
+                                        <li>Injury or trauma</li>
+                                        <li>COPD</li>
+                                        <li>Cystic fibrosis</li>
+                                        <li>Lung cancer</li>
+                                        <li>Asthma</li>
+                                        <li>Tuberculosis</li>
+                                        <li>Bacterial pneumonia</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Physiotherapy Goals</h3>
+                            <div class="card-grid">
+                                <div class="card">
+                                    <h4><i class="fas fa-lungs"></i> Improve Ventilation</h4>
+                                    <ul>
+                                        <li>Physical activity</li>
+                                        <li>Breathing exercises</li>
+                                        <li>Sputum removal techniques</li>
+                                        <li>PEP devices</li>
+                                        <li>Incentive spirometry</li>
+                                        <li>Non-invasive ventilation</li>
+                                    </ul>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-ban"></i> Sputum Removal</h4>
+                                    <ul>
+                                        <li>Postural drainage</li>
+                                        <li>Percussion and vibrations</li>
+                                        <li>PEP devices</li>
+                                        <li>Coughing techniques</li>
+                                    </ul>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-running"></i> Reduce Work of Breathing</h4>
+                                    <ul>
+                                        <li>Body positioning</li>
+                                        <li>Breathing control</li>
+                                        <li>Relaxation techniques</li>
+                                        <li>Accessory muscle use</li>
+                                    </ul>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-heartbeat"></i> Improve Exercise Tolerance</h4>
+                                    <ul>
+                                        <li>Early mobilization</li>
+                                        <li>Graded exercise program</li>
+                                        <li>Breathing exercises</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hemothorax -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-tint"></i> Hemothorax</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <p>Hemothorax is defined as the entry of pleural fluid and blood into the pleural cavity, with a hematocrit of 25-50% of the patient's blood.</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-lungs"></i>
+                            <div>Hemothorax Imaging Visualization</div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Clinical Presentation</h3>
+                            <ul>
+                                <li>Chest pain</li>
+                                <li>Dyspnea (shortness of breath)</li>
+                                <li>Fever</li>
+                                <li>Tachycardia (increased heart rate)</li>
+                                <li>Reduced breath sounds on the affected side</li>
+                                <li>Pallor</li>
+                                <li>Cold sweats</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Diagnostic Procedures</h3>
+                            <div class="card-grid">
+                                <div class="card">
+                                    <h4><i class="fas fa-x-ray"></i> Chest X-ray</h4>
+                                    <p>Initial imaging to detect fluid in pleural space</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-wave-square"></i> Ultrasound</h4>
+                                    <p>Bedside assessment for fluid detection</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-cogs"></i> CT Scan</h4>
+                                    <p>Detailed imaging for complex cases</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-magnet"></i> MRI Scan</h4>
+                                    <p>Alternative imaging with no radiation</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Physiotherapy Management</h3>
+                            <div class="procedure-card">
+                                <p>The patient's clinical picture should guide treatment decisions:</p>
+                                <ul>
+                                    <li>Treatment differs for patients with chest tubes vs. post-surgical</li>
+                                    <li>Deep breathing exercises to improve ventilation and oxygenation</li>
+                                    <li>Early mobilization to improve exercise tolerance</li>
+                                    <li>Assisted coughing techniques for airway clearance</li>
+                                    <li>Re-inflation of atelectatic lung areas</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lung Contusion & Laceration -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-lungs"></i> Lung Injuries</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <div class="highlight">
+                            <p><strong>Clinical Insight:</strong> Lung contusion is essentially a bruise on the lung caused by blunt force trauma, while lung laceration involves a tear or cut in the lung tissue itself.</p>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Lung Contusion</h3>
+                            <ul>
+                                <li>Caused by blunt force trauma (MVA, falls, sports injuries)</li>
+                                <li>Leads to bleeding and fluid accumulation without tearing</li>
+                                <li>Damages small blood vessels in the lungs</li>
+                            </ul>
+                            
+                            <h4>Symptoms</h4>
+                            <ul>
+                                <li>Chest pain</li>
+                                <li>Shortness of breath</li>
+                                <li>Coughing (possibly with blood)</li>
+                                <li>Wheezing</li>
+                                <li>Rapid breathing</li>
+                                <li>Cyanosis (late sign)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Lung Laceration</h3>
+                            <ul>
+                                <li>Caused by penetrating trauma or severe blunt trauma</li>
+                                <li>Disrupts structural integrity of the lung</li>
+                                <li>May lead to pneumothorax or hemothorax</li>
+                            </ul>
+                            
+                            <h4>Symptoms</h4>
+                            <ul>
+                                <li>Sudden chest pain</li>
+                                <li>Difficulty breathing</li>
+                                <li>Coughing up blood</li>
+                                <li>Rapid heart rate</li>
+                                <li>Signs of shock if significant bleeding</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Physiotherapy Techniques</h3>
+                            <div class="card-grid">
+                                <div class="card">
+                                    <h4><i class="fas fa-wind"></i> Airway Clearance</h4>
+                                    <ul>
+                                        <li>Postural drainage</li>
+                                        <li>Percussion and vibration</li>
+                                        <li>Forced expiratory techniques</li>
+                                    </ul>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-lungs"></i> Breathing Exercises</h4>
+                                    <ul>
+                                        <li>Diaphragmatic breathing</li>
+                                        <li>Incentive spirometry</li>
+                                        <li>Segmental breathing</li>
+                                    </ul>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-walking"></i> Mobilization</h4>
+                                    <ul>
+                                        <li>Early ambulation</li>
+                                        <li>Progressive exercise</li>
+                                        <li>Positioning techniques</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pneumonia -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-virus"></i> Pneumonia</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <p>Pneumonia refers to an infection of the lung parenchyma, characterized by inflammation and consolidation of lung tissue.</p>
+                        
+                        <div class="content-section">
+                            <h3>Classification</h3>
+                            <div class="card-grid">
+                                <div class="card">
+                                    <h4><i class="fas fa-bacteria"></i> By Infective Agent</h4>
+                                    <ul>
+                                        <li>Bacterial (most common cause)</li>
+                                        <li>Viral (e.g., influenza, COVID-19)</li>
+                                        <li>Fungal (in immunocompromised)</li>
+                                    </ul>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-hospital"></i> By Setting</h4>
+                                    <ul>
+                                        <li>Community-acquired (CAP)</li>
+                                        <li>Hospital-acquired (HAP)</li>
+                                        <li>Ventilator-associated (VAP)</li>
+                                        <li>Aspiration pneumonia</li>
+                                    </ul>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-lungs"></i> By Pathology</h4>
+                                    <ul>
+                                        <li>Bronchopneumonia</li>
+                                        <li>Lobar pneumonia</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Signs and Symptoms</h3>
+                            <ul>
+                                <li>Chest pain when breathing or coughing</li>
+                                <li>Confusion (especially in elderly)</li>
+                                <li>Cough with phlegm production</li>
+                                <li>Fatigue and fever with shaking chills</li>
+                                <li>Lower than normal body temperature</li>
+                                <li>Nausea, vomiting or diarrhea</li>
+                                <li>Shortness of breath</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Physiotherapy Management</h3>
+                            <div class="procedure-card">
+                                <p>Comprehensive approach to pneumonia management:</p>
+                                <div class="card-grid">
+                                    <div class="card">
+                                        <h4><i class="fas fa-wind"></i> Secretion Clearance</h4>
+                                        <ul>
+                                            <li>Active Cycle of Breathing</li>
+                                            <li>Autogenic Drainage</li>
+                                            <li>Positive Expiratory Pressure</li>
+                                        </ul>
+                                    </div>
+                                    <div class="card">
+                                        <h4><i class="fas fa-lungs"></i> Breathing Techniques</h4>
+                                        <ul>
+                                            <li>Controlling respiratory rate</li>
+                                            <li>Diaphragmatic breathing</li>
+                                            <li>Relaxation breathing</li>
+                                        </ul>
+                                    </div>
+                                    <div class="card">
+                                        <h4><i class="fas fa-procedures"></i> Positioning</h4>
+                                        <ul>
+                                            <li>Postural drainage</li>
+                                            <li>Positions of ease</li>
+                                            <li>Paced breathing during exercise</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Empyema -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-lungs"></i> Empyema</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <p>Empyema is a collection of pus in the space between the lung and the inner surface of the chest wall (pleural space).</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-x-ray"></i>
+                            <div>Empyema Imaging Visualization</div>
+                        </div>
+                        
+                        <div class="highlight">
+                            <p><strong>Clinical Insight:</strong> Empyema typically results from bacterial pneumonia, tuberculosis, chest surgery, lung abscess, or trauma to the chest.</p>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Risk Factors</h3>
+                            <ul>
+                                <li>Bacterial pneumonia</li>
+                                <li>Tuberculosis</li>
+                                <li>Chest surgery</li>
+                                <li>Lung abscess</li>
+                                <li>Trauma or injury to the chest</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Symptoms</h3>
+                            <div class="card-grid">
+                                <div class="card">
+                                    <h4><i class="fas fa-lungs"></i> Respiratory</h4>
+                                    <p>Chest pain, dry cough, shortness of breath</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-temperature-high"></i> Systemic</h4>
+                                    <p>Fever and chills, excessive sweating (night sweats)</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-weight"></i> General</h4>
+                                    <p>General discomfort, malaise, unintentional weight loss</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Atelectasis -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-lungs"></i> Atelectasis</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <p>Atelectasis is the partial collapse or closure of a lung resulting in reduced or absence in gas exchange. It is usually unilateral, affecting part or all of one lung.</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-lungs"></i>
+                            <div>Atelectasis Visualization</div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Symptoms</h3>
+                            <ul>
+                                <li>Cough (not prominent)</li>
+                                <li>Chest pain (not common)</li>
+                                <li>Breathing difficulty (fast and shallow)</li>
+                                <li>Low oxygen saturation</li>
+                                <li>Pleural effusion (transudate type)</li>
+                                <li>Cyanosis (late sign)</li>
+                                <li>Increased heart rate</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Physiotherapy Management</h3>
+                            <div class="procedure-card">
+                                <ul>
+                                    <li>Deep breathing exercises</li>
+                                    <li>Encouraging coughing</li>
+                                    <li>Incentive spirometer use</li>
+                                    <li>Early ambulation and walking</li>
+                                    <li>Positioning to optimize ventilation</li>
+                                    <li>Chest physiotherapy techniques</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cystic Fibrosis -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-dna"></i> Cystic Fibrosis</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <p>Cystic fibrosis (CF) is a genetic disease that causes sticky, thick mucus to build up in your body. This can damage your lungs, pancreas and other organs.</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-lungs"></i>
+                            <div>Cystic Fibrosis Visualization</div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Symptoms</h3>
+                            <ul>
+                                <li>Difficulty breathing</li>
+                                <li>Coughing up mucus</li>
+                                <li>Poor growth</li>
+                                <li>Fatty stool</li>
+                                <li>Recurrent lung infections</li>
+                                <li>Salty-tasting skin</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Physiotherapy Management</h3>
+                            <div class="card-grid">
+                                <div class="card">
+                                    <h4><i class="fas fa-procedures"></i> Airway Clearance</h4>
+                                    <ul>
+                                        <li>Postural drainage</li>
+                                        <li>Percussion</li>
+                                        <li>Shaking and vibrations</li>
+                                    </ul>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-lungs"></i> Breathing Techniques</h4>
+                                    <ul>
+                                        <li>Active cycle of breathing (ACBT)</li>
+                                        <li>Forced Expiration Technique (FET)</li>
+                                        <li>Positive expiratory pressure (PEP)</li>
+                                    </ul>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-walking"></i> Exercise</h4>
+                                    <ul>
+                                        <li>Aerobic conditioning</li>
+                                        <li>Strength training</li>
+                                        <li>Endurance activities</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hemoptysis -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-tint"></i> Hemoptysis</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <p>Hemoptysis or haemoptysis is the discharge of blood or blood-stained mucus through the mouth coming from the bronchi, larynx, trachea, or lungs.</p>
+                        
+                        <div class="emergency">
+                            <h4><i class="fas fa-exclamation-triangle"></i> Clinical Significance</h4>
+                            <p>Hemoptysis can range from mild to life-threatening. Massive hemoptysis (>500 ml in 24 hours) is a medical emergency requiring immediate intervention.</p>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Causes</h3>
+                            <ul>
+                                <li>Bronchitis</li>
+                                <li>Lung cancer</li>
+                                <li>Tuberculosis</li>
+                                <li>Pneumonia</li>
+                                <li>Pulmonary embolism</li>
+                                <li>Bronchiectasis</li>
+                                <li>Lung abscess</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Assessment</h3>
+                            <div class="procedure-card">
+                                <ul>
+                                    <li>Determine amount and duration of bleeding</li>
+                                    <li>Assess for signs of respiratory distress</li>
+                                    <li>Check vital signs including oxygen saturation</li>
+                                    <li>Evaluate for associated symptoms (fever, weight loss)</li>
+                                    <li>Review medical history and risk factors</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bronchiectasis -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-lungs"></i> Bronchiectasis</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <p>Bronchiectasis is a condition that occurs when the tubes that carry air in and out of your lungs get damaged, causing them to widen and become loose and scarred.</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-lungs"></i>
+                            <div>Bronchiectasis Visualization</div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Symptoms</h3>
+                            <ul>
+                                <li>Chronic cough with mucus production</li>
+                                <li>Shortness of breath</li>
+                                <li>Coughing up blood</li>
+                                <li>Chest pain</li>
+                                <li>Wheezing</li>
+                                <li>Nail clubbing</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Physiotherapy Management</h3>
+                            <div class="card-grid">
+                                <div class="card">
+                                    <h4><i class="fas fa-wind"></i> Airway Clearance</h4>
+                                    <ul>
+                                        <li>Active cycle breathing technique</li>
+                                        <li>Autogenic drainage</li>
+                                        <li>PEP devices</li>
+                                        <li>High-frequency chest wall oscillation</li>
+                                    </ul>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-walking"></i> Exercise</h4>
+                                    <ul>
+                                        <li>Aerobic training</li>
+                                        <li>Strength training</li>
+                                        <li>Inspiratory muscle training</li>
+                                        <li>Pulmonary rehabilitation</li>
+                                    </ul>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-user-injured"></i> Education</h4>
+                                    <ul>
+                                        <li>Smoking cessation</li>
+                                        <li>Infection prevention</li>
+                                        <li>Vaccination adherence</li>
+                                        <li>Nutritional guidance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lung Abscess -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-lungs"></i> Lung Abscess</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <p>Lung abscess is a type of infection that occurs in the lungs, characterized by a collection of pus in a cavity within the lung tissue.</p>
+                        
+                        <div class="highlight">
+                            <p><strong>Clinical Insight:</strong> Lung abscesses are typically caused by aspiration of oral secretions in patients with impaired consciousness or dysphagia, leading to polymicrobial infection.</p>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Causes</h3>
+                            <ul>
+                                <li>Bacterial infection (most common)</li>
+                                <li>Fungal infection</li>
+                                <li>Parasitic infection</li>
+                                <li>Aspiration of foreign material</li>
+                                <li>Obstruction of bronchus</li>
+                                <li>Septic embolism</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Symptoms</h3>
+                            <div class="card-grid">
+                                <div class="card">
+                                    <h4><i class="fas fa-cough"></i> Respiratory</h4>
+                                    <p>Productive cough with foul-smelling sputum, hemoptysis</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-thermometer-half"></i> Systemic</h4>
+                                    <p>Fever, night sweats, fatigue</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-weight"></i> General</h4>
+                                    <p>Chest pain, shortness of breath, weight loss, clubbing</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tuberculosis -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-bacterium"></i> Tuberculosis</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <p>Tuberculosis (TB) is an infectious disease caused by Mycobacterium tuberculosis that most often affects the lungs.</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-lungs"></i>
+                            <div>Tuberculosis Visualization</div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Symptoms</h3>
+                            <ul>
+                                <li>Chronic cough (lasting >3 weeks)</li>
+                                <li>Cough with bloody mucus</li>
+                                <li>Chest pain</li>
+                                <li>Unintentional weight loss</li>
+                                <li>Fever and night sweats</li>
+                                <li>Fatigue</li>
+                                <li>Loss of appetite</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Physiotherapy Management</h3>
+                            <div class="procedure-card">
+                                <ul>
+                                    <li>Breathing exercises to improve ventilation</li>
+                                    <li>Airway clearance techniques</li>
+                                    <li>Exercise training to improve functional capacity</li>
+                                    <li>Nutritional counseling</li>
+                                    <li>Education on medication adherence</li>
+                                    <li>Energy conservation techniques</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- COPD -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-wind"></i> Chronic Obstructive Pulmonary Disease (COPD)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <p>COPD is a progressive lung disease characterized by chronic respiratory symptoms and airflow limitation.</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-lungs"></i>
+                            <div>COPD Lung Visualization</div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Types of COPD</h3>
+                            <table class="comparison-table">
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Definition</th>
+                                    <th>Characteristics</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>Emphysema</strong></td>
+                                    <td>Enlarged airspaces with broken walls</td>
+                                    <td>Permanent damage to lung tissue</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Chronic Bronchitis</strong></td>
+                                    <td>Productive cough for ≥3 months/year for 2 years</td>
+                                    <td>Airway inflammation and mucus hypersecretion</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Physiotherapy Management</h3>
+                            <div class="phase-container">
+                                <div class="phase">
+                                    <h4><span class="phase-number">1</span> Pulmonary Rehabilitation</h4>
+                                    <ul>
+                                        <li>Exercise training</li>
+                                        <li>Education and self-management</li>
+                                        <li>Nutritional counseling</li>
+                                        <li>Psychological support</li>
+                                    </ul>
+                                </div>
+                                <div class="phase">
+                                    <h4><span class="phase-number">2</span> Breathing Techniques</h4>
+                                    <ul>
+                                        <li>Pursed-lip breathing</li>
+                                        <li>Diaphragmatic breathing</li>
+                                        <li>Energy conservation techniques</li>
+                                        <li>Airway clearance methods</li>
+                                    </ul>
+                                </div>
+                                <div class="phase">
+                                    <h4><span class="phase-number">3</span> Exercise Training</h4>
+                                    <ul>
+                                        <li>Aerobic exercises</li>
+                                        <li>Strength training</li>
+                                        <li>Flexibility exercises</li>
+                                        <li>Interval training</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Asthma -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-wind"></i> Asthma</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <p>Asthma is a disease characterized by an increased responsiveness of the trachea and bronchi to various stimuli, manifested by narrowing airways.</p>
+                        
+                        <div class="highlight">
+                            <p><strong>Clinical Insight:</strong> Asthma involves chronic airway inflammation with recurrent episodes of wheezing, breathlessness, chest tightness, and coughing.</p>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Symptoms</h3>
+                            <ul>
+                                <li>Wheezing</li>
+                                <li>Coughing (especially at night or early morning)</li>
+                                <li>Chest tightness</li>
+                                <li>Shortness of breath</li>
+                                <li>Use of accessory muscles during breathing</li>
+                                <li>Reduced exercise tolerance</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Physiotherapy Management</h3>
+                            <div class="card-grid">
+                                <div class="card">
+                                    <h4><i class="fas fa-lungs"></i> Breathing Exercises</h4>
+                                    <ul>
+                                        <li>Diaphragmatic breathing</li>
+                                        <li>Pursed-lip breathing</li>
+                                        <li>Buteyko technique</li>
+                                        <li>Yoga breathing</li>
+                                    </ul>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-walking"></i> Exercise Training</h4>
+                                    <ul>
+                                        <li>Aerobic exercise</li>
+                                        <li>Interval training</li>
+                                        <li>Swimming</li>
+                                        <li>Strength training</li>
+                                    </ul>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-book"></i> Education</h4>
+                                    <ul>
+                                        <li>Trigger avoidance</li>
+                                        <li>Inhaler technique</li>
+                                        <li>Action plan development</li>
+                                        <li>Self-monitoring</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Surgical Procedures -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-procedures"></i> Surgical Procedures</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <h3>Procedures for Lung Abscess and Empyema</h3>
+                        <table class="comparison-table">
+                            <tr>
+                                <th>Procedure</th>
+                                <th>Description</th>
+                                <th>Indications</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Intercostal Drainage</strong></td>
+                                <td>Small incision between ribs to drain fluid/pus</td>
+                                <td>Empyema, large pleural effusions</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rib Resection</strong></td>
+                                <td>Removal of portion of rib to access pleural space</td>
+                                <td>Chronic empyema, inadequate drainage</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Decortication</strong></td>
+                                <td>Removal of fibrous membrane surrounding lung</td>
+                                <td>Organized empyema, trapped lung</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Window Operation</strong></td>
+                                <td>Creation of opening in chest wall for drainage</td>
+                                <td>Chronic empyema not responding to other treatments</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Additional Procedures</h3>
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4><i class="fas fa-lungs"></i> Lobectomy</h4>
+                                <p>Removal of a lobe of the lung for cancer or severe infection</p>
+                            </div>
+                            <div class="card">
+                                <h4><i class="fas fa-lungs"></i> Pneumonectomy</h4>
+                                <p>Removal of an entire lung for central tumors</p>
+                            </div>
+                            <div class="card">
+                                <h4><i class="fas fa-lungs"></i> Segmentectomy</h4>
+                                <p>Removal of a lung segment preserving more tissue</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Respiratory Failure -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-lungs"></i> Respiratory Failure</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <h3>Type 1 (Hypoxemic Respiratory Failure)</h3>
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4><i class="fas fa-info-circle"></i> Definition</h4>
+                                <p>Inability of lungs to oxygenate blood adequately (PaO₂ < 60 mmHg)</p>
+                            </div>
+                            <div class="card">
+                                <h4><i class="fas fa-disease"></i> Causes</h4>
+                                <p>Pneumonia, ARDS, pulmonary edema, pulmonary fibrosis</p>
+                            </div>
+                            <div class="card">
+                                <h4><i class="fas fa-tachometer-alt"></i> Management</h4>
+                                <p>Oxygen therapy, CPAP, mechanical ventilation</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Type 2 (Hypercapnic Respiratory Failure)</h3>
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4><i class="fas fa-info-circle"></i> Definition</h4>
+                                <p>Inability to ventilate adequately (PaCO₂ > 50 mmHg)</p>
+                            </div>
+                            <div class="card">
+                                <h4><i class="fas fa-disease"></i> Causes</h4>
+                                <p>COPD, neuromuscular disorders, drug overdose</p>
+                            </div>
+                            <div class="card">
+                                <h4><i class="fas fa-tachometer-alt"></i> Management</h4>
+                                <p>Non-invasive ventilation, mechanical ventilation, bronchodilators</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Physiotherapy Role</h3>
+                        <div class="procedure-card">
+                            <ul>
+                                <li>Optimize ventilation-perfusion matching</li>
+                                <li>Improve secretion clearance</li>
+                                <li>Prevent complications of immobility</li>
+                                <li>Assist in weaning from ventilatory support</li>
+                                <li>Positioning strategies to improve oxygenation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pulmonary Embolism -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-heartbeat"></i> Pulmonary Embolism</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <p>Pulmonary Embolism (PE) is a life-threatening condition that occurs when one or more arteries in the lungs become blocked by a blood clot.</p>
+                        
+                        <div class="emergency">
+                            <h4><i class="fas fa-exclamation-triangle"></i> Clinical Significance</h4>
+                            <p>PE is a medical emergency requiring immediate treatment. Massive PE can cause sudden death.</p>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Causes</h3>
+                            <ul>
+                                <li>Deep Vein Thrombosis (DVT)</li>
+                                <li>Recent surgery (especially orthopedic or abdominal)</li>
+                                <li>Trauma</li>
+                                <li>Cancer</li>
+                                <li>Genetic disorders (Factor V Leiden)</li>
+                                <li>Prolonged immobility</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Symptoms</h3>
+                            <div class="card-grid">
+                                <div class="card">
+                                    <h4><i class="fas fa-lungs"></i> Respiratory</h4>
+                                    <p>Sudden shortness of breath, pleuritic chest pain, cough</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-heart"></i> Cardiovascular</h4>
+                                    <p>Tachycardia, hypotension, syncope, cyanosis</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-dizzy"></i> Systemic</h4>
+                                    <p>Anxiety, fever, diaphoresis, lightheadedness</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pre/Post-Op Pulmonary -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-procedures"></i> Pre/Post-Op Pulmonary Assessment</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <h3>Preoperative Assessment</h3>
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4><i class="fas fa-history"></i> Medical History</h4>
+                                <p>Evaluate pre-existing conditions (COPD, heart disease, diabetes)</p>
+                            </div>
+                            <div class="card">
+                                <h4><i class="fas fa-stethoscope"></i> Physical Examination</h4>
+                                <p>Thorough assessment to identify potential risks</p>
+                            </div>
+                            <div class="card">
+                                <h4><i class="fas fa-lungs"></i> Pulmonary Function Tests</h4>
+                                <p>Spirometry, lung volumes, diffusion capacity</p>
+                            </div>
+                            <div class="card">
+                                <h4><i class="fas fa-heartbeat"></i> Cardiovascular Evaluation</h4>
+                                <p>ECG, echocardiogram, cardiac stress test</p>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Preoperative Treatment</h3>
+                            <ul>
+                                <li>Optimization of comorbidities (hypertension, diabetes)</li>
+                                <li>Smoking cessation program</li>
+                                <li>Pulmonary rehabilitation</li>
+                                <li>Antibiotics for existing infections</li>
+                                <li>Education on postoperative expectations</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Postoperative Assessment</h3>
+                            <div class="card-grid">
+                                <div class="card">
+                                    <h4><i class="fas fa-heartbeat"></i> Vital Signs</h4>
+                                    <p>Temperature, BP, heart rate, oxygen saturation</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-pain"></i> Pain Management</h4>
+                                    <p>Multimodal approach assessment</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-lungs"></i> Respiratory Status</h4>
+                                    <p>Oxygen saturation, respiratory rate, lung sounds</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-brain"></i> Neurological Status</h4>
+                                    <p>Level of consciousness, cognitive function</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Postoperative Treatment</h3>
+                            <div class="phase-container">
+                                <div class="phase">
+                                    <h4><span class="phase-number">1</span> Respiratory Support</h4>
+                                    <ul>
+                                        <li>Oxygen therapy</li>
+                                        <li>Incentive spirometry</li>
+                                        <li>Chest physiotherapy</li>
+                                        <li>Bronchodilators</li>
+                                    </ul>
+                                </div>
+                                <div class="phase">
+                                    <h4><span class="phase-number">2</span> Early Mobilization</h4>
+                                    <ul>
+                                        <li>Prevent DVT and pneumonia</li>
+                                        <li>Progressive ambulation</li>
+                                        <li>Bed exercises initially</li>
+                                        <li>Transfer training</li>
+                                    </ul>
+                                </div>
+                                <div class="phase">
+                                    <h4><span class="phase-number">3</span> Comprehensive Care</h4>
+                                    <ul>
+                                        <li>Pain management</li>
+                                        <li>Fluid and electrolyte balance</li>
+                                        <li>Nutrition support</li>
+                                        <li>Wound care education</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pre/Post-Op Cardiac -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-heart"></i> Pre/Post-Op Cardiac</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <h3>Preoperative Assessment</h3>
+                        <ul>
+                            <li>Medical history evaluation</li>
+                            <li>Physical examination</li>
+                            <li>Laboratory tests (CBC, electrolytes, renal function)</li>
+                            <li>Imaging studies (chest X-ray, echocardiogram)</li>
+                            <li>Cardiopulmonary exercise testing</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Preoperative Management</h3>
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4><i class="fas fa-user-md"></i> Optimization</h4>
+                                <p>Manage comorbidities (hypertension, diabetes)</p>
+                            </div>
+                            <div class="card">
+                                <h4><i class="fas fa-pills"></i> Medication</h4>
+                                <p>Beta-blockers, antiplatelet agents, antibiotics</p>
+                            </div>
+                            <div class="card">
+                                <h4><i class="fas fa-smoking-ban"></i> Lifestyle</h4>
+                                <p>Smoking cessation, nutrition optimization</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Postoperative Management</h3>
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4><i class="fas fa-heartbeat"></i> Monitoring</h4>
+                                <p>Vital signs, cardiovascular status, respiratory status</p>
+                            </div>
+                            <div class="card">
+                                <h4><i class="fas fa-pain"></i> Pain Control</h4>
+                                <p>Multimodal approach with opioids and NSAIDs</p>
+                            </div>
+                            <div class="card">
+                                <h4><i class="fas fa-walking"></i> Mobilization</h4>
+                                <p>Early ambulation, graded exercise program</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CPR -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-heartbeat"></i> CPR Techniques</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <div class="emergency">
+                            <h4><i class="fas fa-exclamation-triangle"></i> Life-Saving Technique</h4>
+                            <p>Cardiopulmonary resuscitation (CPR) is used to restore blood circulation and breathing in a person who has stopped breathing or whose heart has stopped beating.</p>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Adult CPR</h3>
+                            <ol>
+                                <li>Call emergency services</li>
+                                <li>Check airway, breathing, and circulation (ABCs)</li>
+                                <li>Start compressions (2-3 inches depth, 100-120/min)</li>
+                                <li>Give rescue breaths (2 breaths after 30 compressions)</li>
+                                <li>Continue until help arrives or signs of consciousness</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Child CPR (1-8 years)</h3>
+                            <ol>
+                                <li>Call emergency services</li>
+                                <li>Check ABCs</li>
+                                <li>Start compressions (1/3 chest depth)</li>
+                                <li>Give rescue breaths (2 breaths after 30 compressions)</li>
+                                <li>Continue until help arrives</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Infant CPR (0-12 months)</h3>
+                            <ol>
+                                <li>Call emergency services</li>
+                                <li>Check ABCs</li>
+                                <li>Start compressions (1/4 chest depth with thumbs)</li>
+                                <li>Give rescue breaths (2 gentle breaths after 30 compressions)</li>
+                                <li>Continue until help arrives</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-heartbeat"></i>
+                            <div>CPR Technique Illustration</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ventilators -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-wind"></i> Ventilators</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <p>Ventilators are life-support machines that assist patients in breathing when they are unable to do so on their own.</p>
+                        
+                        <div class="content-section">
+                            <h3>Types of Ventilators</h3>
+                            <div class="card-grid">
+                                <div class="card">
+                                    <h4><i class="fas fa-tachometer-alt"></i> Volume-Controlled</h4>
+                                    <p>Delivers set tidal volume regardless of pressure</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-compress-alt"></i> Pressure-Controlled</h4>
+                                    <p>Delivers set pressure with each breath</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-clock"></i> Time-Cycled</h4>
+                                    <p>Delivers breaths at a set rate</p>
+                                </div>
+                                <div class="card">
+                                    <h4><i class="fas fa-wave-square"></i> Flow-Cycled</h4>
+                                    <p>Delivers breaths based on set flow rate</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Modes of Ventilation</h3>
+                            <table class="comparison-table">
+                                <tr>
+                                    <th>Mode</th>
+                                    <th>Description</th>
+                                    <th>Clinical Use</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>CMV</strong></td>
+                                    <td>Controlled Mechanical Ventilation</td>
+                                    <td>Ventilator delivers all breaths</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ACV</strong></td>
+                                    <td>Assist-Control Ventilation</td>
+                                    <td>Set rate with patient-triggered breaths</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>SIMV</strong></td>
+                                    <td>Synchronized Intermittent Mandatory Ventilation</td>
+                                    <td>Set rate with spontaneous breathing</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PSV</strong></td>
+                                    <td>Pressure Support Ventilation</td>
+                                    <td>Supports patient's spontaneous breaths</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Principles of Ventilator Management</h3>
+                            <ul>
+                                <li><strong>Oxygenation:</strong> Adjust FiO2 and PEEP for adequate oxygenation</li>
+                                <li><strong>Ventilation:</strong> Adjust tidal volume, respiratory rate, and inspiratory time</li>
+                                <li><strong>Monitoring:</strong> Continuous vital sign assessment</li>
+                                <li><strong>Weaning:</strong> Gradual reduction of support</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ICU/CCU Management -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-hospital-user"></i> ICU/CCU Management</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <h3>Goals of Physiotherapy in ICU/CCU</h3>
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4><i class="fas fa-lungs"></i> Respiratory Function</h4>
+                                <p>Enhance lung expansion and increase oxygenation</p>
+                            </div>
+                            <div class="card">
+                                <h4><i class="fas fa-running"></i> Prevent Muscle Weakness</h4>
+                                <p>Maintain muscle strength through early mobilization</p>
+                            </div>
+                            <div class="card">
+                                <h4><i class="fas fa-heart"></i> Cardiovascular Function</h4>
+                                <p>Improve cardiac output and reduce cardiac workload</p>
+                            </div>
+                            <div class="card">
+                                <h4><i class="fas fa-wind"></i> Ventilator Weaning</h4>
+                                <p>Assist patients in transitioning to spontaneous breathing</p>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Physiotherapy Interventions</h3>
+                            <div class="phase-container">
+                                <div class="phase">
+                                    <h4><span class="phase-number">1</span> Respiratory</h4>
+                                    <ul>
+                                        <li>Chest physiotherapy</li>
+                                        <li>Lung expansion exercises</li>
+                                        <li>Suctioning techniques</li>
+                                        <li>Positioning strategies</li>
+                                    </ul>
+                                </div>
+                                <div class="phase">
+                                    <h4><span class="phase-number">2</span> Mobilization</h4>
+                                    <ul>
+                                        <li>Early mobilization</li>
+                                        <li>Passive/active exercises</li>
+                                        <li>Resistance training</li>
+                                        <li>Bed-to-chair transfers</li>
+                                    </ul>
+                                </div>
+                                <div class="phase">
+                                    <h4><span class="phase-number">3</span> Cardiovascular</h4>
+                                    <ul>
+                                        <li>Aerobic exercises</li>
+                                        <li>Positioning for hemodynamics</li>
+                                        <li>Circulation exercises</li>
+                                        <li>Monitoring during activity</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Post-MI Management -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <span><i class="fas fa-heartbeat"></i> Post-MI Management</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="content-section">
+                        <p>Post-Myocardial Infarction (MI) management involves comprehensive rehabilitation strategies to optimize recovery, prevent complications, and improve quality of life for cardiac patients.</p>
+                        
+                        <div class="image-placeholder">
+                            <i class="fas fa-heart"></i>
+                            <div>Cardiac Rehabilitation Visualization</div>
+                        </div>
+                        
+                        <div class="highlight">
+                            <p><strong>Clinical Insight:</strong> Early mobilization and structured rehabilitation significantly reduce mortality and improve functional capacity in post-MI patients. The rehabilitation program should be tailored to individual patient needs and risk factors.</p>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Goals of Post-MI Physiotherapy</h3>
+                            <div class="card-grid">
+                                <div class="card heart-card">
+                                    <h4><i class="fas fa-heart"></i> Improve Cardiovascular Function</h4>
+                                    <p>Enhance cardiac output, reduce cardiac workload, and promote cardiovascular stability</p>
+                                </div>
+                                <div class="card heart-card">
+                                    <h4><i class="fas fa-lungs"></i> Enhance Respiratory Function</h4>
+                                    <p>Improve lung expansion, increase oxygenation, and prevent respiratory complications</p>
+                                </div>
+                                <div class="card heart-card">
+                                    <h4><i class="fas fa-running"></i> Prevent Muscle Weakness</h4>
+                                    <p>Maintain muscle strength through early mobilization and targeted exercises</p>
+                                </div>
+                                <div class="card heart-card">
+                                    <h4><i class="fas fa-smile"></i> Improve Quality of Life</h4>
+                                    <p>Promote physical activity, independence, and psychological well-being</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Phases of Cardiac Rehabilitation</h3>
+                            <div class="phase-container">
+                                <div class="phase">
+                                    <h4><span class="phase-number cardiac">1</span> Phase I: Inpatient</h4>
+                                    <ul>
+                                        <li>Begin within 24-48 hours post-MI</li>
+                                        <li>Bed exercises and sitting tolerance</li>
+                                        <li>Breathing exercises and coughing techniques</li>
+                                        <li>Progressive ambulation</li>
+                                        <li>Education on risk factors</li>
+                                    </ul>
+                                </div>
+                                <div class="phase">
+                                    <h4><span class="phase-number cardiac">2</span> Phase II: Early Outpatient</h4>
+                                    <ul>
+                                        <li>Begin 2-6 weeks post-discharge</li>
+                                        <li>Supervised exercise program</li>
+                                        <li>Low-to-moderate intensity aerobic exercise</li>
+                                        <li>Resistance training introduction</li>
+                                        <li>Continued education and counseling</li>
+                                    </ul>
+                                </div>
+                                <div class="phase">
+                                    <h4><span class="phase-number cardiac">3</span> Phase III: Intermediate Outpatient</h4>
+                                    <ul>
+                                        <li>Months 3-6 post-MI</li>
+                                        <li>Progressive exercise intensity</li>
+                                        <li>Increased duration and frequency</li>
+                                        <li>Advanced resistance training</li>
+                                        <li>Lifestyle modification reinforcement</li>
+                                    </ul>
+                                </div>
+                                <div class="phase">
+                                    <h4><span class="phase-number cardiac">4</span> Phase IV: Maintenance</h4>
+                                    <ul>
+                                        <li>Long-term maintenance program</li>
+                                        <li>Community-based exercise</li>
+                                        <li>Ongoing risk factor management</li>
+                                        <li>Periodic reassessment</li>
+                                        <li>Support group participation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Physiotherapy Interventions</h3>
+                            <div class="card-grid">
+                                <div class="card heart-card">
+                                    <h4><i class="fas fa-walking"></i> Aerobic Exercise</h4>
+                                    <ul>
+                                        <li>Walking, cycling, treadmill</li>
+                                        <li>Initial intensity: 40-60% HR max</li>
+                                        <li>Duration: 20-40 minutes</li>
+                                        <li>Frequency: 3-5 days/week</li>
+                                    </ul>
+                                </div>
+                                <div class="card heart-card">
+                                    <h4><i class="fas fa-dumbbell"></i> Resistance Training</h4>
+                                    <ul>
+                                        <li>Begin 3-4 weeks post-MI</li>
+                                        <li>Light weights (30-40% 1RM)</li>
+                                        <li>Focus on major muscle groups</li>
+                                        <li>2-3 sets of 10-15 repetitions</li>
+                                    </ul>
+                                </div>
+                                <div class="card heart-card">
+                                    <h4><i class="fas fa-lungs"></i> Respiratory Training</h4>
+                                    <ul>
+                                        <li>Diaphragmatic breathing</li>
+                                        <li>Incentive spirometry</li>
+                                        <li>Pursed-lip breathing</li>
+                                        <li>Segmental breathing exercises</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Exercise Prescription Guidelines</h3>
+                            <table class="comparison-table">
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Phase I (Inpatient)</th>
+                                    <th>Phase II (Early Outpatient)</th>
+                                    <th>Phase III/IV (Maintenance)</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>Intensity</strong></td>
+                                    <td>Low (RPE 9-11)</td>
+                                    <td>Moderate (RPE 11-13)</td>
+                                    <td>Moderate-Vigorous (RPE 12-14)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Duration</strong></td>
+                                    <td>5-15 minutes</td>
+                                    <td>20-30 minutes</td>
+                                    <td>30-45 minutes</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Frequency</strong></td>
+                                    <td>2-4 times/day</td>
+                                    <td>3-5 days/week</td>
+                                    <td>5 days/week</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Type</strong></td>
+                                    <td>Bed exercises, ambulation</td>
+                                    <td>Treadmill, cycling</td>
+                                    <td>Varied aerobic activities</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Monitoring</strong></td>
+                                    <td>Continuous ECG, SpO₂</td>
+                                    <td>Intermittent ECG, BP</td>
+                                    <td>Periodic assessment</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3>Precautions and Contraindications</h3>
+                            <div class="emergency">
+                                <h4><i class="fas fa-exclamation-triangle"></i> Exercise Termination Criteria</h4>
+                                <p>Immediately stop exercise if patient experiences: Chest pain, severe dyspnea, dizziness, drop in SBP ≥10mmHg, significant arrhythmias, or ST-segment depression ≥2mm.</p>
+                            </div>
+                            
+                            <div class="procedure-card">
+                                <h4>Absolute Contraindications to Exercise</h4>
+                                <ul>
+                                    <li>Unstable angina</li>
+                                    <li>Resting systolic BP >200mmHg or diastolic BP >110mmHg</li>
+                                    <li>Orthostatic BP drop >20mmHg with symptoms</li>
+                                    <li>Severe aortic stenosis</li>
+                                    <li>Acute systemic illness or fever</li>
+                                    <li>Uncontrolled atrial or ventricular arrhythmias</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>Cardiopulmonary Physical Therapy Lecture Series</p>
+            <p>Prepared by Afnan Derhm, PT | Clinical Specialist in Cardiopulmonary Rehabilitation</p>
+        </div>
+    </footer>
+
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const accordion = header.parentElement;
+                accordion.classList.toggle('active');
+            });
+        });
+        
+        // Navigation functionality
+        const navButtons = document.querySelectorAll('.chapter-nav button');
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Get section title
+                const sectionTitle = button.textContent;
+                
+                // Find corresponding accordion
+                const accordions = document.querySelectorAll('.accordion');
+                accordions.forEach(accordion => {
+                    const accordionTitle = accordion.querySelector('.accordion-header span').textContent.trim();
+                    if (accordionTitle.includes(sectionTitle)) {
+                        // Close all accordions
+                        accordions.forEach(acc => acc.classList.remove('active'));
+                        // Open target accordion
+                        accordion.classList.add('active');
+                        
+                        // Scroll to the accordion
+                        accordion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+        
+        // Professional hover effects
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px)';
+                card.style.boxShadow = '0 12px 20px rgba(0,0,0,0.12)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '0 5px 15px rgba(0,0,0,0.06)';
+            });
+        });
+        
+        // Initialize first accordion as open
+        document.querySelector('.accordion').classList.add('active');
+        
+        // Animation on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.accordion, .card, .comparison-table');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 100 + index * 50);
+            });
+        });
+    </script>
+</body>
+</html>
